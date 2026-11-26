@@ -2,7 +2,7 @@ git init
 git add *
 git commit -m "first commit"
 git branch -M main
-git remote add origin https://github.com/tarouqa7med/signal_example.git
+git remote add origin https://github.com/tarouqa7med/shopping_cart.git
 git push -u origin main
 ng add angular-cli-ghpages
-ng deploy --base-href=/signal_example/
+ng deploy --base-href=/shopping_cart/
