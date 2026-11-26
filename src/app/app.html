@@ -1,0 +1,40 @@
+<app-loadingPage></app-loadingPage>
+<app-navbar></app-navbar>
+
+<h1 class="text-center my-5 fw-semibold wow animate__animated animate__fadeInDown animate__delay-3s">Shopping Cart</h1>
+<h6 class="text-center my-5 mx-auto w-75 fw-semibold wow animate__animated animate__fadeInDown animate__delay-3s">
+        Explore a simple and easy shopping experience where you can find your favorite products, check their prices, manage
+        quantities, and calculate your total cost. Add what you need to your cart and enjoy a smooth and organized way to shop.Don't forget to visit us again to discover our latest offers and discounts!
+</h6>
+
+<div class="row qp m-0 px-3 mb-5">
+        <div class="col-lg-6 mb-4 wow animate__animated animate__fadeInBottomLeft animate__delay-3s">
+                <div class="item py-5 m-auto text-center rounded-4 bg-dark-subtle border border-1 border-black">
+                        <h2>Total Items</h2>
+                        <h4>{{totalItems()}}</h4>
+                </div>
+        </div>
+        <div class="col-lg-6 mb-4 wow animate__animated animate__fadeInBottomRight animate__delay-3s">
+                <div class="item py-5 m-auto text-center rounded-4 bg-danger-subtle border border-1 border-black">
+                        <h2>Total Price</h2>
+                        <h4>{{totalPrice().toFixed(2)}}<sup class="fw-bold ms-1">$</sup></h4>
+                </div>
+        </div>
+</div>
+
+<div class="row products m-0 p-3 overflow-y-hidden" data-wow-delay="3.5s">
+        @for (item of products(); track $index) {
+                <div [attr.class]="($index%2==0?'Col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-2 wow animate__animated animate__rotateInDownLeft':'Col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-2 wow animate__animated animate__rotateInDownRight')">
+                        <div class="item w-100 mb-3 px-3 py-4 m-auto border border-1 rounded-3">
+                                <img class="card-img-top d-block m-auto" src="images/{{products()[$index].img}}" alt="">
+                                <p class="text-center fw-bold" style="height: 75px;">{{products()[$index].name}}</p>
+                                <p><span class="fw-bold me-2">Price:</span><span class="fw-semibold me-1">{{products()[$index].price.toFixed(2)}}</span><sup class="fw-bold">$</sup></p>
+                                <p><span class="fw-bold me-2">Quantity:</span>{{products()[$index].quantity}} <span class="ms-2 fw-bold">(Max: <span class="text-danger">100 items</span> )</span></p>
+                                <p><span class="fw-bold me-2">Subtotal:</span>{{(products()[$index].quantity * products()[$index].price).toFixed(2)}}<sup class="fw-bold ms-1">$</sup></p>
+                                <button class="btn btn-primary me-2" [disabled]="products()[$index].quantity >= maxQuantity ? disabled : !disabled" (click)="increaseQuantity($index)"><i class="fa-solid fa-plus"></i></button>
+                                <button class="btn btn-danger" [disabled]="products()[$index].quantity <= minQuantity ? disabled : !disabled" (click)="decreaseQuantity($index)"><i class="fa-solid fa-minus"></i></button>
+                                <button class="btn btn-success w-100 mt-3">Add</button>
+                        </div>
+                </div>
+        }
+</div>

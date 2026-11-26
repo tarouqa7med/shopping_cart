@@ -1,0 +1,35 @@
+
+.qp {
+        .col-lg-6 {
+                .item {
+                        width: 85%;
+                }
+        }
+}
+.products {
+        .Col {
+                .item {
+                        transition-duration: 200ms;
+                        background-color: #bceeff98;
+                        border-color: teal !important;
+
+                        img {
+                                width: 200px;
+                                filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.2));
+                                transition-duration: 200ms;
+                        }
+                        button {
+                                transition: scale 200ms;
+                                &:active {
+                                        scale: .95;
+                                }
+                        }
+                        &:hover {
+                                box-shadow: 0 0 10px #004c4c80;
+                                img {
+                                        scale: 1.05;
+                                }
+                        }
+                }
+        }
+}
